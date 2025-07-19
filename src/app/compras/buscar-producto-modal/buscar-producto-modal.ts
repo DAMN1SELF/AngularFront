@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductoService } from '../../service/producto-service';
 import { Producto } from '../../models/producto';
 import { catchError } from 'rxjs/operators';
@@ -11,6 +11,7 @@ import { of } from 'rxjs';
   styleUrl: './buscar-producto-modal.css'
 })
 export class BuscarProductoModal {
+  @Input() modo: 'compra' | 'venta' = 'compra';
   @Output() onProductosSeleccionados = new EventEmitter<Producto[]>();
   @Output() cerrar = new EventEmitter<void>();
 

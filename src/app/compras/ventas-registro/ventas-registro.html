@@ -2,10 +2,9 @@
   class="container mt-5 p-4 rounded shadow bg-white"
   style="max-width: 1200px"
 >
-  <h2 class="mb-4 text-primary fw-bold">Registro de Compra</h2>
+  <h2 class="mb-4 text-primary fw-bold">Registro de Venta</h2>
 
   <!-- Cabecera -->
-
   <div class="row mb-4 p-3 rounded bg-light shadow-sm">
     <div class="col-md-4 mb-3">
       <label class="form-label">Fecha de Registro</label>
@@ -21,7 +20,7 @@
       <input
         type="number"
         class="form-control"
-        [ngModel]="compra.sub_Total"
+        [ngModel]="venta.sub_Total"
         disabled
       />
     </div>
@@ -30,7 +29,7 @@
       <input
         type="number"
         class="form-control"
-        [ngModel]="compra.igv_Total"
+        [ngModel]="venta.igv_Total"
         disabled
       />
     </div>
@@ -39,7 +38,7 @@
       <input
         type="number"
         class="form-control"
-        [ngModel]="compra.total_Total"
+        [ngModel]="venta.total_Total"
         disabled
       />
     </div>
@@ -52,9 +51,6 @@
       (click)="abrirModalProducto()"
     >
       + Buscar producto
-    </button>
-    <button class="btn btn-outline-primary" style="border-radius: 1.5rem">
-      + Registrar producto
     </button>
   </div>
 
@@ -74,7 +70,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let prod of compra.detalles; let i = index">
+        <tr *ngFor="let prod of venta.detalles; let i = index">
           <td style="width: 80px">{{ prod.codigo_item }}</td>
           <td style="width: 250px">{{ prod.nombre_item }}</td>
           <td style="width: 100px">
@@ -111,8 +107,8 @@
     </table>
   </div>
   <div style="margin-top: 0.5rem; display: flex; gap: 1.5rem">
-    <button class="btn btn-outline-success" (click)="registrarCompra()">
-      Guardar Compra
+    <button class="btn btn-outline-success" (click)="registrarVenta()">
+      Guardar Venta
     </button>
   </div>
 </div>
@@ -120,7 +116,7 @@
 <!-- Modal buscar producto -->
 <app-buscar-producto-modal
   *ngIf="modalVisible"
-  [modo]="'compra'"
+  [modo]="'venta'"
   (onProductosSeleccionados)="agregarProductosDetalle($event)"
   (cerrar)="modalVisible = false"
 >

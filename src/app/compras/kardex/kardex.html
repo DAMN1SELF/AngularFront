@@ -1,0 +1,34 @@
+<div class="kardex-container">
+  <h2>Kardex de Productos</h2>
+  <div *ngIf="loading">Cargando productos...</div>
+  <table *ngIf="!loading" class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Stock Actual</th>
+        <th>Costo</th>
+        <th>Precio Venta</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of productos">
+        <td>{{ p.id_producto }}</td>
+        <td>{{ p.nombre_producto }}</td>
+        <td>{{ p.stock_actual }}</td>
+        <td>S/ {{ p.costo | number:'1.2-2' }}</td>
+        <td>S/ {{ p.precio_venta | number:'1.2-2' }}</td>
+        <button class="btn btn-info btn-sm" (click)="verDetalle(p)">
+          Ver Detalle
+        </button>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-kardex-detalle
+  *ngIf="modalVisible"
+  [idProducto]="productoDetalleId"
+  (cerrar)="cerrarModal()"
+></app-kardex-detalle>

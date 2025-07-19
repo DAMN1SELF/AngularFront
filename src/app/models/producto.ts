@@ -6,3 +6,4 @@ export interface Producto {
   cost: number;
   salePrice: number;
 }
+

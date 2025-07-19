@@ -13,10 +13,12 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from './helpers/auth.guard';
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { AlumnoComponent } from './crud/alumno-component/alumno-component';
 import localeEs from '@angular/common/locales/es';
 import { CompraRegistro } from './compras/compra-registro/compra-registro';
 import { BuscarProductoModal } from './compras/buscar-producto-modal/buscar-producto-modal';
+import { VentasRegistro } from './compras/ventas-registro/ventas-registro';
+import { Kardex } from './compras/kardex/kardex';
+import { KardexDetalle } from './compras/kardex-detalle/kardex-detalle';
 
 registerLocaleData(localeEs);
 @NgModule({
@@ -25,9 +27,11 @@ registerLocaleData(localeEs);
     Principal,
     Menu,
     Login,
-    AlumnoComponent,
     CompraRegistro,
-    BuscarProductoModal
+    BuscarProductoModal,
+    VentasRegistro,
+    Kardex,
+    KardexDetalle
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,14 @@ registerLocaleData(localeEs);
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: 'principal', component: Principal, canActivate: [AuthGuard] },
+      {
+        path: 'principal', component: Principal, canActivate: [AuthGuard],
+        children: [
+          { path: 'compra-registro', component: CompraRegistro },
+          { path: 'ventas-registro', component: VentasRegistro },
+          { path: 'kardex', component: Kardex }
+        ]
+      },
       { path: 'login', component: Login },
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: '**', redirectTo: '/login' }

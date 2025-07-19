@@ -1,0 +1,64 @@
+:host {
+  display: block;
+  min-height: 70vh;
+  background: #f8fafc;
+  padding: 2rem 0;
+}
+
+.kardex-container {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px 0 rgba(40, 67, 135, 0.1);
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 980px;
+}
+
+h2 {
+  font-weight: bold;
+  color: #2950a7;
+  margin-bottom: 2rem;
+}
+
+.table {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table th {
+  background: #eef3fb;
+  color: #2950a7;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.table tr {
+  transition: background 0.2s;
+}
+
+.table tr:hover {
+  background: #f0f7ff;
+}
+
+.table td,
+.table th {
+  padding: 0.75rem 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .kardex-container {
+    padding: 1rem;
+    max-width: 100vw;
+  }
+  .table {
+    font-size: 0.92rem;
+  }
+}
