@@ -1,0 +1,107 @@
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #7ba7b9 !important; /* tu color azul-gris actual */
+}
+
+/* Haz que el contenedor principal ocupe al menos el 90% del alto de la pantalla */
+.main-full-center {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compra-card {
+  width: 100%;
+  max-width: 850px;
+  min-height: 500px; /* Ajusta si quieres aún más alto */
+  margin: 0 auto;
+  /* ... el resto de tus estilos ... */
+}
+
+.compra-title {
+  font-size: 2.3rem;
+  color: #2563eb;
+  font-weight: 700;
+  margin-bottom: 28px;
+  letter-spacing: -1.2px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.input-group input,
+.form-control,
+.form-select {
+  border-radius: 10px !important;
+  min-height: 2.25rem;
+  box-shadow: none !important;
+  border: 1.2px solid #d0d4da !important;
+  font-size: 1.07rem;
+}
+
+input[disabled],
+.form-control[disabled] {
+  background: #f6f6f6 !important;
+  color: #bbb !important;
+}
+
+.table {
+  margin-bottom: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f9fafc;
+  font-size: 1rem;
+}
+.table th {
+  background: #e5edfb;
+  font-weight: 700;
+  color: #2d384c;
+  text-align: center;
+  vertical-align: middle;
+}
+.table td {
+  vertical-align: middle;
+  background: #fff;
+}
+.btn {
+  border-radius: 8px !important;
+  font-weight: 600;
+}
+.btn-danger {
+  background: #f44336;
+  border: none;
+  color: #fff;
+}
+.btn-outline-primary {
+  border-radius: 8px;
+  border-width: 2px;
+  padding: 6px 20px;
+  font-weight: 600;
+  color: #2563eb;
+  background: #fff;
+  border-color: #2563eb;
+  transition: all 0.15s;
+}
+.btn-outline-primary:hover {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+@media (max-width: 800px) {
+  .compra-card {
+    padding: 1.1rem;
+  }
+  .compra-title {
+    font-size: 1.2rem;
+  }
+  .table {
+    font-size: 0.9rem;
+  }
+}

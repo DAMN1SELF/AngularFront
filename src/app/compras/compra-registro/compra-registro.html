@@ -1,0 +1,101 @@
+<div
+  class="container mt-5 p-4 rounded shadow bg-white"
+  style="max-width: 900px"
+>
+  <h2 class="mb-4 text-primary fw-bold">Registro de Compra</h2>
+
+  <div class="row mb-4 p-3 rounded bg-light shadow-sm">
+    <div style="margin-top: 0.5rem; display: flex; gap: 1.5rem">
+      <button
+        class="btn btn-outline-primary"
+        style="border-radius: 1.5rem"
+        (click)="abrirModalProducto()"
+      >
+        + Buscar producto
+      </button>
+      <button class="btn btn-outline-primary" style="border-radius: 1.5rem">
+        + Registrar producto
+      </button>
+    </div>
+  </div>
+
+  <!-- Detalle de productos -->
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle">
+      <thead class="table-primary">
+        <tr>
+          <th class="d-none">Id</th>
+          <th style="min-width: 180px; width: 30%">Nombre Producto</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Subtotal</th>
+          <th>IGV</th>
+          <th>Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- Ejemplo de fila -->
+        <tr>
+          <td class="d-none">
+            <input type="number" class="form-control" min="1" value="1" />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nombre Producto"
+            />
+          </td>
+          <td>
+            <input type="number" class="form-control" min="1" value="1" />
+          </td>
+          <td>
+            <input type="number" class="form-control" min="0" value="0.00" />
+          </td>
+          <td>
+            <input type="number" class="form-control" disabled value="0.00" />
+          </td>
+          <td>
+            <input type="number" class="form-control" disabled value="0.00" />
+          </td>
+          <td>
+            <input type="number" class="form-control" disabled value="0.00" />
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm rounded-pill px-3">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+        <!-- Puedes duplicar las filas según detalle -->
+      </tbody>
+    </table>
+    <div class="row mb-4 p-3 rounded bg-light shadow-sm">
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Fecha de Registro</label>
+        <input type="date" class="form-control" [value]="hoy" />
+      </div>
+      <div class="col-md-2 mb-3">
+        <label class="form-label">Subtotal</label>
+        <input type="number" class="form-control" disabled value="0.00" />
+      </div>
+      <div class="col-md-2 mb-3">
+        <label class="form-label">IGV</label>
+        <input type="number" class="form-control" disabled value="0.00" />
+      </div>
+      <div class="col-md-2 mb-3">
+        <label class="form-label">Total</label>
+        <input type="number" class="form-control" disabled value="0.00" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-buscar-producto-modal
+  *ngIf="modalVisible"
+  (onProductosSeleccionados)="agregarProductosDetalle($event)"
+  (cerrar)="modalVisible = false"
+>
+</app-buscar-producto-modal>

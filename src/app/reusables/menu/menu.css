@@ -1,0 +1,22 @@
+    .navbar-custom {
+      background-color: #000000;
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: #00ff88;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-custom .nav-link:hover,
+    .navbar-custom .navbar-brand:hover {
+      color: #66ffcc;
+    }
+
+    @media (max-width: 767.98px) {
+      .navbar-nav {
+        flex-direction: column;
+        text-align: center;
+      }
+    }

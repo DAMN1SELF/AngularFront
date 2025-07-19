@@ -1,0 +1,78 @@
+<div class="mi-modal-fondo">
+  <div class="mi-modal-caja modal-xl">
+    <div class="modal-header bg-primary text-white">
+      <h5 class="modal-title">Buscar Producto</h5>
+      <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+    </div>
+    <div class="modal-body">
+      <form
+        class="row g-2 align-items-center"
+        (ngSubmit)="buscarProductoModal()"
+      >
+        <div class="col-md-10">
+          <input
+            [(ngModel)]="busquedaNombre"
+            name="nombre"
+            type="text"
+            class="form-control"
+            placeholder="Ingrese nombre de producto..."
+            required
+            autocomplete="off"
+          />
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-outline-primary w-100" type="submit">
+            Buscar
+          </button>
+        </div>
+      </form>
+      <div *ngIf="busquedaRealizada">
+        <table class="table table-bordered table-hover mt-4">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Lote</th>
+              <th>Fecha Registro</th>
+              <th>Costo</th>
+              <th>Precio Venta</th>
+              <th>
+                <input
+                  type="checkbox"
+                  (change)="toggleSeleccionarTodos($event)"
+                  [checked]="todosSeleccionados()"
+                />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prod of productosModal">
+              <td>{{ prod.productId }}</td>
+              <td>{{ prod.fullName }}</td>
+              <td>{{ prod.batchNumber }}</td>
+              <td>{{ prod.registrationDate | date:'short' }}</td>
+              <td>S/ {{ prod.cost | number:'1.2-2' }}</td>
+              <td>S/ {{ prod.salePrice | number:'1.2-2' }}</td>
+              <td>
+                <input
+                  type="checkbox"
+                  [checked]="estaSeleccionado(prod)"
+                  (change)="toggleSeleccionar(prod)"
+                />
+              </td>
+            </tr>
+            <tr *ngIf="productosModal.length == 0">
+              <td colspan="7" class="text-center text-muted">
+                No se encontraron productos.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" (click)="confirmarSeleccion()">OK</button>
+      <button class="btn btn-secondary" (click)="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
+</div>

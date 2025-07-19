@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <h3>Listado de Alumnos</h3>
+
+
+        <div class="mb-3">
+            <button class="btn btn-light" (click)="abrirModal('agregar')">
+                <i class="bi bi-plus-circle"></i> Insertar Alumno
+            </button>
+        </div>
+        <table class="table table-bordered table-hover mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DNI</th>
+                    <th>Ciclo</th>
+                    <th>Estado</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of alumnos; let i = index">
+                    <td>{{ (i + 1).toString().padStart(2, '0') }}</td>
+                    <td>{{ x.nombre }}</td>
+                    <td>{{ x.apellido }}</td>
+                    <td>{{ x.dni }}</td>
+                    <td>{{ x.ciclo }}</td>
+                    <td>{{ x.estado === 'A' ? 'Activo' : 'Inactivo' }}</td>
+                    <td>{{ x.nombreUsuario }}</td>
+                    <td>
+                        <i class="bi bi-calendar-date"></i>
+                        {{ x.fecha | date:'dd \'de\' MMMM \'de\' yyyy':'es' }}
+                    </td>
+                    <td class="d-flex flex-row gap-2">
+                        <button class="btn btn-primary btn-sm" (click)="abrirModal('editar', x)" title="Modificar">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" (click)="eliminarAlumno(x.idAlumno)" title="Eliminar">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="alumnoModal" tabindex="-1" aria-labelledby="alumnoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alumnoModalLabel">{{ modalModo === 'agregar' ? 'Agregar Canción' :
+                        'Editar Canción' }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" [(ngModel)]="alumnoForm.nombre" name="nombre"
+                                required #nombreCtrl="ngModel">
+                            <div *ngIf="nombreCtrl.invalid && nombreCtrl.touched" class="text-danger">
+                                <small> Debe ingresar un Nombre</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Apellido</label>
+                            <input type="text" class="form-control" [(ngModel)]="alumnoForm.apellido" name="apellido"
+                                required #apellidoCtrl="ngModel">
+                            <div *ngIf="apellidoCtrl.invalid && apellidoCtrl.touched" class="text-danger">
+                                <small> Debe ingresar un Apellido</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">DNI</label>
+                            <input type="text" class="form-control" maxlength="8" [(ngModel)]="alumnoForm.dni"
+                                name="dni" required pattern="[0-9]{8}" (input)="soloNumeros($event)" #dniCtrl="ngModel">
+
+                            <div *ngIf="dniCtrl.invalid && dniCtrl.touched" class="text-danger">
+                                <small *ngIf="dniCtrl.errors?.['required']">Debe ingresar un DNI</small>
+                                <small *ngIf="dniCtrl.errors?.['pattern']">El DNI debe tener exactamente 8 dígitos
+                                    numéricos</small>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Ciclo</label>
+                            <select class="form-control" [(ngModel)]="alumnoForm.ciclo" name="ciclo" required
+                                #cicloCtrl="ngModel">
+                                <option value="" disabled selected>Seleccione Ciclo</option>
+                                <option *ngFor="let c of ciclos" [value]="c">{{ c }}</option>
+                            </select>
+
+                            <div *ngIf="cicloCtrl.invalid && cicloCtrl.touched" class="text-danger">
+                                <small>Debe seleccionar un Ciclo (1 a 6)</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Estado</label>
+                            <ng-select #estadoCtrl="ngModel" [items]="estado" bindLabel="nombre" bindValue="idEstado"
+                                [(ngModel)]="idEstadoSeleccionado" name="estado" required [searchable]="false">
+                            </ng-select>
+                            <div *ngIf="estadoCtrl.invalid && estadoCtrl.touched" class="text-danger">
+                                <small>Debe seleccionar un Estado</small>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" (click)="guardarAlumno()">Guardar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+</html>

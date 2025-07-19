@@ -1,0 +1,27 @@
+.duracion-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.acciones-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;   /* Puedes ajustar el espacio aquí */
+  flex-wrap: wrap;  /* Opcional: permite pasar a segunda línea en pantallas muy chicas */
+}
+::ng-deep ng-select .ng-select-container {
+  border: 1px solid #198754;   /* verde Bootstrap */
+  border-radius: 0.375rem;
+}
+
+::ng-deep ng-select .ng-option {
+  padding: 0.5rem 1rem;
+  color: #212529;
+  background-color: #f8f9fa;
+}
+
+::ng-deep ng-select .ng-option-selected {
+  background-color: #198754 !important;
+  color: white !important;
+}
+
