@@ -1,0 +1,63 @@
+<div class="mi-modal-fondo">
+  <div class="mi-modal-caja modal-lg">
+    <div class="modal-header bg-primary text-white">
+      <h5 class="modal-title">{{ titulo }}</h5>
+      <button type="button" class="btn-close" (click)="onCerrar()"></button>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onGuardar()">
+      <div class="modal-body p-3 form-grid">
+        <!-- Nombres -->
+        <div class="form-item">
+          <label class="form-label fw-semibold">Nombres</label>
+          <input formControlName="nombresCliente" class="form-control" placeholder="Ingrese nombres" />
+        </div>
+
+        <!-- Género -->
+        <div class="form-item">
+          <label class="form-label fw-semibold">Género</label>
+          <select formControlName="generoCliente" class="form-select">
+            <option value="">Seleccione</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+        </div>
+
+        <!-- Edad -->
+        <div class="form-item">
+          <label class="form-label fw-semibold">Edad</label>
+          <input type="number" formControlName="edadCliente" class="form-control" placeholder="Edad" />
+        </div>
+
+        <!-- Identificación -->
+        <div class="form-item">
+          <label class="form-label fw-semibold">Identificación  </label>
+          <input formControlName="identificacionCliente" class="form-control" placeholder="Ingrese identificación" />
+        </div>
+
+        <!-- Dirección -->
+        <div class="form-item">
+          <label class="form-label fw-semibold">Dirección</label>
+          <input formControlName="direccionCliente" class="form-control" placeholder="Ingrese dirección" />
+        </div>
+
+        <!-- Teléfono -->
+        <div class="form-item">
+          <label class="form-label fw-semibold">Teléfono</label>
+          <input formControlName="telefonoCliente" class="form-control" placeholder="Ingrese teléfono" />
+        </div>
+
+        <!-- Contraseña solo si es nuevo -->
+        <div class="form-item" *ngIf="!clienteEditar">
+          <label class="form-label fw-semibold">Contraseña</label>
+          <input type="password" formControlName="contrasenaHashCliente" class="form-control" placeholder="Ingrese contraseña" />
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onCerrar()">Cancelar</button>
+        <button type="submit" class="btn btn-primary">{{ clienteEditar ? 'Actualizar' : 'Guardar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

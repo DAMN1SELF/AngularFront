@@ -17,9 +17,7 @@ import Swal from 'sweetalert2';
 export class ModuloClientes implements OnInit {
   clientes: Cliente[] = [];
   cargando = true;
-  mostrarModal = false;
 
-  clienteSeleccionado: UpdateClientDTO | null = null;
 
   constructor(private clienteService: ClienteService) {}
 
@@ -44,20 +42,6 @@ export class ModuloClientes implements OnInit {
         Swal.fire('Error', 'No se pudieron cargar los clientes.', 'error');
       },
     });
-  }
-
-  abrirEdicion(cliente: Cliente) {
-    this.clienteSeleccionado = { ...cliente, contrasenaHashCliente: '' };
-    this.mostrarModal = true;
-  }
-
-  cerrarModal() {
-    this.mostrarModal = false;
-  }
-
-  abrirNuevo() {
-    this.clienteSeleccionado = null;
-    this.mostrarModal = true;
   }
 
   darDeBaja(cliente: Cliente) {
@@ -114,22 +98,33 @@ export class ModuloClientes implements OnInit {
     });
   }
 
-  guardarCliente(dto: CreateClientDTO | UpdateClientDTO) {
+  mostrarModal = false;
+  clienteSeleccionado: Cliente | null = null;
+
+  abrirNuevo() {
+    this.clienteSeleccionado = null;
+    this.mostrarModal = true;
+  }
+
+  abrirEdicion(cliente: Cliente) {
+    this.clienteSeleccionado = cliente;
+    this.mostrarModal = true;
+  }
+
+  onGuardarCliente(dto: CreateClientDTO | UpdateClientDTO) {
     if (this.clienteSeleccionado) {
-      // EDITAR
       this.clienteService
         .actualizarCliente(this.clienteSeleccionado.codigoCliente, dto as UpdateClientDTO)
         .subscribe(() => {
           Swal.fire('Éxito', 'Cliente actualizado', 'success');
           this.listarClientes();
-          this.cerrarModal();
+          this.mostrarModal = false;
         });
     } else {
-      // CREAR
       this.clienteService.crearCliente(dto as CreateClientDTO).subscribe(() => {
         Swal.fire('Éxito', 'Cliente creado', 'success');
         this.listarClientes();
-        this.cerrarModal();
+        this.mostrarModal = false;
       });
     }
   }

@@ -22,6 +22,7 @@ import { KardexDetalle } from './compras/kardex-detalle/kardex-detalle';
 import { Sidebar } from './layout/sidebar/sidebar';
 import { Header } from './layout/header/header';
 import { ModuloClientes } from './banco/modulo-clientes/modulo-clientes';
+import { ClienteModal } from './banco/modulo-clientes/modal/cliente-modal/cliente-modal';
 
 
 registerLocaleData(localeEs);
@@ -39,6 +40,7 @@ registerLocaleData(localeEs);
     Sidebar,
     Header,
     ModuloClientes,
+    ClienteModal,
     
 
   ],

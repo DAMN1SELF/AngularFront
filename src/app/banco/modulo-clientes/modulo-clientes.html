@@ -72,9 +72,11 @@
     </tbody>
   </table>
 
-<!-- <app-cliente-modal
+
+<app-cliente-modal
   *ngIf="mostrarModal"
   [clienteEditar]="clienteSeleccionado"
-  (guardar)="guardarCliente($event)"
-  (cerrar)="cerrarModal()">
-</app-cliente-modal> -->
+  (guardar)="onGuardarCliente($event)"
+  (cerrar)="mostrarModal = false">
+</app-cliente-modal>
+
