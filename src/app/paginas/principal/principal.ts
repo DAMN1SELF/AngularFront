@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-principal',
@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './principal.css'
 })
 export class Principal {
+
+  sidebarCollapsed = false;
+
+  onToggleSidebar() {
+    this.sidebarCollapsed = !this.sidebarCollapsed;
+  }
 
 }

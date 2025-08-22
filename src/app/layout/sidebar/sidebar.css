@@ -1,0 +1,28 @@
+.app-sidenav{
+  width: var(--sidebar-width);
+  height: 100vh;
+  position: fixed;
+  left:0;
+  top:0;
+  background: var(--brand-blue);
+  color: var(--text-light);
+  padding: 16px 12px;
+  box-sizing: border-box;
+  z-index: 50;
+  transition: width .18s ease;
+}
+
+.app-sidenav.collapsed {
+  width: var(--sidebar-collapsed);
+}
+
+.brand .logo{ font-weight:700; font-size:18px; color:var(--text-light); }
+
+.nav-list{ margin-top:18px; display:flex; flex-direction:column; gap:10px; }
+.nav-list a{
+  display:flex; align-items:center; gap:8px;
+  color: var(--text-light);
+  text-decoration:none; padding:8px; border-radius:6px;
+}
+.nav-list a .icon{ width:28px; text-align:center; }
+.app-sidenav.collapsed .label{ display:none; }

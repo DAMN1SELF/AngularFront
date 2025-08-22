@@ -19,6 +19,10 @@ import { BuscarProductoModal } from './compras/buscar-producto-modal/buscar-prod
 import { VentasRegistro } from './compras/ventas-registro/ventas-registro';
 import { Kardex } from './compras/kardex/kardex';
 import { KardexDetalle } from './compras/kardex-detalle/kardex-detalle';
+import { Sidebar } from './layout/sidebar/sidebar';
+import { Header } from './layout/header/header';
+import { ModuloClientes } from './banco/modulo-clientes/modulo-clientes';
+
 
 registerLocaleData(localeEs);
 @NgModule({
@@ -31,7 +35,12 @@ registerLocaleData(localeEs);
     BuscarProductoModal,
     VentasRegistro,
     Kardex,
-    KardexDetalle
+    KardexDetalle,
+    Sidebar,
+    Header,
+    ModuloClientes,
+    
+
   ],
   imports: [
     BrowserModule,
@@ -42,19 +51,21 @@ registerLocaleData(localeEs);
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {
-        path: 'principal', component: Principal, canActivate: [AuthGuard],
-        children: [
-          { path: 'compra-registro', component: CompraRegistro },
-          { path: 'ventas-registro', component: VentasRegistro },
-          { path: 'kardex', component: Kardex }
-        ]
-      },
-      { path: 'login', component: Login },
-      { path: '', redirectTo: '/login', pathMatch: 'full' },
-      { path: '**', redirectTo: '/login' }
+        {
+            path: 'principal', component: Principal, canActivate: [AuthGuard],
+            children: [
+                { path: 'CLIENTES', component: ModuloClientes },
+                { path: 'CUENTAS', component: VentasRegistro },
+                { path: 'MOVIMIENTOS', component: Kardex },
+                { path: 'REPORTES', component: Kardex },
+            ]
+        },
+        { path: 'login', component: Login },
+        { path: '', redirectTo: '/login', pathMatch: 'full' },
+        { path: '**', redirectTo: '/login' }
     ]),
-  ],
+
+],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },
     {

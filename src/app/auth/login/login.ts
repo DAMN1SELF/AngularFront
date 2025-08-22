@@ -23,8 +23,8 @@ export class Login {
     private fb: FormBuilder
   ) {
     this.formLogin = new FormGroup({
-      userName: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required])
+      Identificacion: new FormControl(null, [Validators.required]),
+      Clave: new FormControl(null, [Validators.required])
     })
   }
 
@@ -36,8 +36,8 @@ export class Login {
 
   initForm() {
     this.formLogin = new FormGroup({
-      userName: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required])
+      Identificacion: new FormControl(null, [Validators.required]),
+      Clave: new FormControl(null, [Validators.required])
     })
   }
 
@@ -53,7 +53,7 @@ export class Login {
             this.route.navigate(['/principal'])
           },
           error: (err: HttpErrorResponse) => {
-            this.alertaError("Correo o contraseña incorrecta ")
+            this.alertaError("Identificador o Clave incorrecta ")
           }
         });
     }

@@ -8,8 +8,7 @@ import { map, Observable } from 'rxjs';
 export class LoginService {
 
 
-  private login: string = 'http://localhost:5188/api/v1/usuario/autenticarse';
-
+  private login: string = 'https://localhost:7162/api/v1/usuario/autenticarse';
   constructor(private http: HttpClient) { }
 
   ingresar(request: any): Observable<any> {

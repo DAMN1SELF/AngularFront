@@ -1,1 +1,9 @@
-@import "bootstrap-icons/font/bootstrap-icons.css";
+:root{
+  --sidebar-width: 220px;
+  --sidebar-collapsed: 64px;
+  --header-height: 64px;
+  --brand-blue: #123f94; /* ajusta color */
+  --accent-green: #00ff99;
+  --text-light: #ffffff;
+}
+html,body{height:100%;margin:0;font-family: Arial, sans-serif;}

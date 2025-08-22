@@ -1,0 +1,80 @@
+<div class="container mt-3">
+  <h2>Clientes</h2>
+
+  <!-- Botón para crear un cliente -->
+  <div class="mb-3">
+  <button class="btn btn-outline-primary" (click)="abrirNuevo()">
+  <i class="bi bi-person-plus"></i> Nuevo Cliente
+</button>
+  </div>
+
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>Código</th>
+        <th>Nombres</th>
+        <th>Género</th>
+        <th>Edad</th>
+        <th>Identificación</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Estado</th>
+        <th>Fecha Registro</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{ cliente.codigoCliente }}</td>
+        <td>{{ cliente.nombresCliente }}</td>
+        <td>{{ cliente.generoCliente }}</td>
+        <td>{{ cliente.edadCliente }}</td>
+        <td>{{ cliente.identificacionCliente }}</td>
+        <td>{{ cliente.direccionCliente }}</td>
+        <td>{{ cliente.telefonoCliente }}</td>
+        <td>
+          <span class="badge"
+                [ngClass]="cliente.estadoCliente ? 'bg-success' : 'bg-danger'">
+            {{ cliente.estadoCliente ? 'Activo' : 'Inactivo' }}
+          </span>
+        </td>
+        <td>{{ cliente.fechaRegistroCliente | date: 'short' }}</td>
+
+        <td>
+          <!-- Editar -->
+          <button class="btn btn-sm btn-outline-info"
+                  data-bs-toggle="modal"
+                  data-bs-target="#clienteModal"
+                  (click)="abrirEdicion(cliente)">
+            <i class="bi bi-pencil"></i>
+          </button>
+
+          <!-- Baja/Alta -->
+          <button *ngIf="cliente.estadoCliente"
+                  class="btn btn-sm btn-outline-warning me-1"
+                  (click)="darDeBaja(cliente)">
+            <i class="bi bi-person-dash"></i>
+          </button>
+
+          <button *ngIf="!cliente.estadoCliente"
+                  class="btn btn-sm btn-outline-success me-1"
+                  (click)="darDeAlta(cliente)">
+            <i class="bi bi-person-check"></i>
+          </button>
+
+          <!-- Eliminar -->
+          <button class="btn btn-sm btn-outline-danger"
+                  (click)="eliminarCliente(cliente)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<!-- <app-cliente-modal
+  *ngIf="mostrarModal"
+  [clienteEditar]="clienteSeleccionado"
+  (guardar)="guardarCliente($event)"
+  (cerrar)="cerrarModal()">
+</app-cliente-modal> -->

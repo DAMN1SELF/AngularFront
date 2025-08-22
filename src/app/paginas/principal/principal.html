@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
+<app-sidebar [collapsed]="sidebarCollapsed"></app-sidebar>
 
-  <body>
-    <app-menu></app-menu>
+<div class="main-area" [class.collapsed]="sidebarCollapsed">
+  <app-header (toggle)="onToggleSidebar()"></app-header>
+
+  <main class="content">
+    <!-- Contenido de prueba / router -->
     <router-outlet></router-outlet>
-  </body>
-</html>
+  </main>
+</div>

@@ -1,0 +1,26 @@
+.topbar{
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width); /* se alinea con sidebar en desktop */
+  right: 0;
+  height: var(--header-height);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 0 12px;
+  background: var(--brand-blue);
+  color: var(--text-light);
+  z-index: 60;
+  box-sizing: border-box;
+  gap:8px;
+}
+.hamb{
+  font-size:20px;
+  background:none;
+  border:none;
+  color:inherit;
+  cursor:pointer;
+  padding:6px;
+}
+.title{ font-weight:700; color:var(--text-light); }
+.actions a{ color: var(--accent-green); text-decoration:none; margin-left:12px; }
