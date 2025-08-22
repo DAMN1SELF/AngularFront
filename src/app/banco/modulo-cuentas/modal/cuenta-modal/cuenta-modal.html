@@ -1,0 +1,53 @@
+<div class="mi-modal-fondo">
+  <div class="mi-modal-caja modal-lg">
+    <div class="modal-header bg-primary text-white">
+      <h5 class="modal-title">{{ titulo }}</h5>
+      <button type="button" class="btn-close" (click)="onCerrar()"></button>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onGuardar()">
+      <div class="modal-body p-3 form-grid">
+
+         <!-- Usuario -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Cliente</label>
+          <select class="form-select" formControlName="cliente_Id">
+            <option value="" disabled>Seleccione cliente</option>
+            <option *ngFor="let c of clientes" [value]="c.codigoCliente">
+              {{ c.codigoCliente }} - {{ c.nombresCliente }}
+            </option>
+          </select>
+        </div>
+        <!-- Tipo de Cuenta -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Tipo de Cuenta  </label>
+
+          <select class="form-select" formControlName="tipo_Cuenta">
+            <option value="" disabled>Seleccione tipo</option>
+            <option *ngFor="let t of tipos" [value]="t.value">
+              {{ t.label }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Saldo Inicial -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Saldo Inicial</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="saldo_Inicial"
+            placeholder="0.00"
+          />
+        </div>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onCerrar()">Cancelar</button>
+        <button type="submit" class="btn btn-primary">{{ cuentaEditar ? 'Actualizar' : 'Guardar' }}</button>
+      </div>
+    </form>
+  </div>
+</div>
+

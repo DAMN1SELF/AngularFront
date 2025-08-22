@@ -27,7 +27,7 @@
       <tr *ngFor="let cliente of clientes">
         <td>{{ cliente.codigoCliente }}</td>
         <td>{{ cliente.nombresCliente }}</td>
-        <td>{{ cliente.generoCliente }}</td>
+        <td>{{ cliente.generoCliente == "F" ? 'Femenino' : 'Masculino' }}</td>
         <td>{{ cliente.edadCliente }}</td>
         <td>{{ cliente.identificacionCliente }}</td>
         <td>{{ cliente.direccionCliente }}</td>

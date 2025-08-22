@@ -16,7 +16,7 @@ export class Header {
   toggleSidebar() { this.toggle.emit(); }
 
 
-  logout() {
+  Salir() {
     this.loginService.logout();
     this.router.navigate(['/login']);
   }

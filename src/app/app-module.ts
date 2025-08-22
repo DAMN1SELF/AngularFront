@@ -14,15 +14,12 @@ import { AuthGuard } from './helpers/auth.guard';
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { NgSelectModule } from '@ng-select/ng-select';
 import localeEs from '@angular/common/locales/es';
-import { CompraRegistro } from './compras/compra-registro/compra-registro';
-import { BuscarProductoModal } from './compras/buscar-producto-modal/buscar-producto-modal';
-import { VentasRegistro } from './compras/ventas-registro/ventas-registro';
-import { Kardex } from './compras/kardex/kardex';
-import { KardexDetalle } from './compras/kardex-detalle/kardex-detalle';
 import { Sidebar } from './layout/sidebar/sidebar';
 import { Header } from './layout/header/header';
 import { ModuloClientes } from './banco/modulo-clientes/modulo-clientes';
 import { ClienteModal } from './banco/modulo-clientes/modal/cliente-modal/cliente-modal';
+import { ModuloCuentas } from './banco/modulo-cuentas/modulo-cuentas';
+import { CuentaModal } from './banco/modulo-cuentas/modal/cuenta-modal/cuenta-modal';
 
 
 registerLocaleData(localeEs);
@@ -32,16 +29,12 @@ registerLocaleData(localeEs);
     Principal,
     Menu,
     Login,
-    CompraRegistro,
-    BuscarProductoModal,
-    VentasRegistro,
-    Kardex,
-    KardexDetalle,
     Sidebar,
     Header,
     ModuloClientes,
     ClienteModal,
-    
+    ModuloCuentas,
+    CuentaModal
 
   ],
   imports: [
@@ -57,9 +50,9 @@ registerLocaleData(localeEs);
             path: 'principal', component: Principal, canActivate: [AuthGuard],
             children: [
                 { path: 'CLIENTES', component: ModuloClientes },
-                { path: 'CUENTAS', component: VentasRegistro },
-                { path: 'MOVIMIENTOS', component: Kardex },
-                { path: 'REPORTES', component: Kardex },
+                { path: 'CUENTAS', component: ModuloCuentas },
+                // { path: 'MOVIMIENTOS', component: ModuloClientes },
+                // { path: 'REPORTES', component: ModuloClientes },
             ]
         },
         { path: 'login', component: Login },
